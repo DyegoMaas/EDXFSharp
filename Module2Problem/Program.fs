@@ -10,6 +10,15 @@ let classifyPersonByAge name age =
     else
         sprintf "%s is a teenage" name
 
+let rec collectAge() =
+    printfn "Enter an age:"
+
+    let parsed, age = Int32.TryParse(Console.ReadLine())
+    if parsed then age 
+    else 
+        printfn "The input was not a valid age"
+        collectAge()
+
 [<EntryPoint>]
 let main argv = 
 
@@ -21,11 +30,10 @@ let main argv =
         if name = "" then 
             inputMorePeople <- false
         else
-            let input = Console.ReadLine()
-            let age = int input
+            let age = collectAge()
             printfn "%s" (classifyPersonByAge name age)
             printfn ""
     
-    printf "No more inputs"
+    printf "Done"
     Console.Read() |> ignore
     0 // return an integer exit code
