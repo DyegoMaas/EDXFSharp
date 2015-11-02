@@ -1,7 +1,7 @@
 ﻿open System
 open System.Text
 
-let obterEntrada (args: string list) : int =
+let obterEntrada (args: string []) : int =
     let obterValorConsole() =
         let podeConverter, valorInformado = Int32.TryParse(Console.ReadLine())
         if podeConverter then valorInformado

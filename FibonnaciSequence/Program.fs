@@ -17,6 +17,7 @@ type Pessoa = { Nome:string; Idade:int }
 
 [<EntryPoint>]
 let main argv = 
+
     let sequence = seq { for i in 0 .. 20 do yield Fibonacci i }
     for v in sequence do
         printfn "%d" v
