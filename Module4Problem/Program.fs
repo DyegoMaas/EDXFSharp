@@ -15,7 +15,7 @@ type GunTest = {
 }
 
 let gravity = 9.81 //m/s
-let calculateAngleOfReach distance speed = 0.5 * Math.Asin(gravity * distance / Math.Pow(speed, 2.0))
+let calculateAngleOfReach distance speed = 0.5 * Math.Asin(gravity * distance / Math.Pow(speed, 2.0)) //should be Math.Asin as instructed or Sin???
 let distanceTravelledOverFlatSurface speed angle = Math.Pow(speed, 2.0) * Math.Sin(2.0 * angle) / gravity
 let calculateAngle x y  = Math.Atan(y / x)
 
@@ -35,15 +35,15 @@ let main argv =
                                        | _ -> argv.[0])
         
         let testList = [ while not input.EndOfStream do
-                                    let raw = input.ReadLine()
-                                    let values = raw.Split(',')
+                            let raw = input.ReadLine()
+                            let values = raw.Split(',')
                                     
-                                    yield { 
-                                        Target = { X = float values.[0]; Y = float values.[1] }
-                                        Speed = float values.[2]
-                                        ExpectedDistance = float values.[3]
-                                        Name = values.[4]
-                                    } ]
+                            yield { 
+                                Target = { X = float values.[0]; Y = float values.[1] }
+                                Speed = float values.[2]
+                                ExpectedDistance = float values.[3]
+                                Name = values.[4]
+                            } ]
 
         for test in testList do
             match test with
