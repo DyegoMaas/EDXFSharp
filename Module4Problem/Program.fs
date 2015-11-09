@@ -2,7 +2,7 @@
 open System.IO
 
 let GetFile() =
-    Console.WriteLine("Insira o caminho do arquivo com as coordenadas")
+    Console.WriteLine("Enter the path to the input file")
     Console.ReadLine()
 
 type Point = { X: float; Y: float }
@@ -15,9 +15,9 @@ type GunTest = {
 }
 
 let gravity = 9.81 //m/s
-let calculateAngleOfReach distance speed = 0.5 * Math.Asin(gravity * distance / Math.Pow(speed, 2.0)) //should be Math.Asin as instructed or Sin???
-let distanceTravelledOverFlatSurface speed angle = Math.Pow(speed, 2.0) * Math.Sin(2.0 * angle) / gravity
-let calculateAngle x y  = Math.Atan(y / x)
+let calculateAngleOfReach distance speed = 0.5 * Math.Pow(Math.Sin(gravity * distance / (speed * speed)), -1.0)
+let distanceTravelledOverFlatSurface speed angle = speed * speed * Math.Sin(2.0 * angle) / gravity
+let calculateAngle x y  = Math.Pow(Math.Tan(y / x), -1.0)
 
 let (|Hit|Miss|) (gunTest: GunTest) = 
     let angle = calculateAngle gunTest.Target.X gunTest.Target.Y
