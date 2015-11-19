@@ -15,13 +15,13 @@ type GunTest = {
 }
 
 let gravity = 9.81 //m/s
-let calculateAngleOfReach distance speed = 0.5 * Math.Pow(Math.Sin(gravity * distance / (speed * speed)), -1.0)
-let distanceTravelledOverFlatSurface speed angle = speed * speed * Math.Sin(2.0 * angle) / gravity
-let calculateAngle x y  = Math.Pow(Math.Tan(y / x), -1.0)
+let CalculateAngleOfReach distance speed = 0.5 * Math.Pow(Math.Sin(gravity * distance / (speed * speed)), -1.0)
+let DistanceTravelledOverFlatSurface speed angle = speed * speed * Math.Sin(2.0 * angle) / gravity
+let CalculateAngle x y  = Math.Pow(Math.Tan(y / x), -1.0)
 
 let (|Hit|Miss|) (gunTest: GunTest) = 
-    let angle = calculateAngle gunTest.Target.X gunTest.Target.Y
-    let distanceTravelled = distanceTravelledOverFlatSurface gunTest.Speed angle
+    let angle = CalculateAngle gunTest.Target.X gunTest.Target.Y
+    let distanceTravelled = DistanceTravelledOverFlatSurface gunTest.Speed angle
     match distanceTravelled >= gunTest.ExpectedDistance with
     | true -> Hit
     | false -> Miss
@@ -49,7 +49,7 @@ let main argv =
             match test with
             | Hit -> printfn "Gun %s hit the target as expected" test.Name
             | Miss -> 
-                let angleOfReach = calculateAngleOfReach test.ExpectedDistance test.Speed
+                let angleOfReach = CalculateAngleOfReach test.ExpectedDistance test.Speed
                 printfn "Gun %s should shoot at angle %f in order to hit the target" test.Name angleOfReach
 
         Console.ReadLine() |> ignore
